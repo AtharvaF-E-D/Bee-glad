@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ title }) => {
+const Card = ({ title }: { title: string }) => {
   return (
     <div className="relative">
       {/* Yellow Background Layer */}
