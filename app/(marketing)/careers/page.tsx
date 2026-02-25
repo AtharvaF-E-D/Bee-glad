@@ -5,6 +5,7 @@ import CareerCulture from './CareerCulture'
 import OpenPositions from './OpenPositions'
 import Life from './Life'
 import BenefitsPerks from './BenefitsPerks'
+import ClientsReview from './ClientsReview'
 
 const page = () => {
   return (
@@ -15,6 +16,7 @@ const page = () => {
       <OpenPositions/>
       <Life/>
       <BenefitsPerks/>
+      <ClientsReview />
     </div>
   )
 }

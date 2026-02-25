@@ -79,6 +79,10 @@ const BenefitsPerks = () => {
             </div>
           ))}
         </div>
+        <p className="text-white/70 py-25 text-center text-2xl font-light">
+          Join a team that&apos;s redefining design excellence <br /> and creating
+          spaces that inspire
+        </p>
       </div>
     </section>
   );
