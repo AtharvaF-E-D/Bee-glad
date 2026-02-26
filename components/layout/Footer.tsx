@@ -2,7 +2,7 @@ import Container from "./Container";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400 py-10 mt-20">
+    <footer className="bg-gray-900 text-gray-400 py-10">
       <Container>
         <div className="flex justify-between">
           <div>
