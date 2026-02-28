@@ -1,6 +1,9 @@
+// lib/navigation.ts
+
 export const navigation = [
   {
     title: "Industries",
+    href: "/industries",
     type: "dropdown",
     items: [
       { label: "Healthcare", href: "/industries/healthcare" },
@@ -11,6 +14,7 @@ export const navigation = [
   },
   {
     title: "Solutions",
+    href: "/solutions",
     type: "dropdown",
     items: [
       { label: "Gen AI Consultancy", href: "/solutions/gen-ai-consultancy" },
@@ -20,16 +24,17 @@ export const navigation = [
       { label: "Cloud & DevOps", href: "/solutions/cloud-devops" },
       { label: "AI & Automation", href: "/solutions/ai-automation" },
       { label: "UI/UX Design", href: "/solutions/ui-ux-design" },
-    ]
+    ],
   },
   {
     title: "Resources",
+    href: "/resources",
     type: "dropdown",
     items: [
       { label: "Case Studies", href: "/resources/case-studies" },
       { label: "Blog & Insights", href: "/resources/blog-insights" },
       { label: "Portfolio", href: "/resources/portfolio" },
-    ]
+    ],
   },
   {
     title: "Insights",
@@ -40,7 +45,7 @@ export const navigation = [
       { label: "Life @Bee Glad", href: "/insights/life-bee-glad" },
       { label: "Technologies", href: "/insights/technologies" },
       { label: "Contact Us", href: "/insights/contact-us" },
-    ]
+    ],
   },
   {
     title: "Careers",

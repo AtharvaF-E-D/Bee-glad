@@ -2,23 +2,7 @@ import React from "react";
 import { Star, Quote } from "lucide-react";
 
 const ClientsReview = () => {
-  const reviews = [
-    {
-      name: "Client Name",
-      subtitle: "loremipsumtext",
-      text: "Praesent non enim sed velit malesuada consectetur id a justo. Fusce quis eros sit amet enim laoreet dignissim.",
-    },
-    // {
-    //   name: "Client Name",
-    //   subtitle: "loremipsumtext",
-    //   text: "Praesent non enim sed velit malesuada consectetur id a justo. Fusce quis eros sit amet enim laoreet dignissim.",
-    // },
-    // {
-    //   name: "Client Name",
-    //   subtitle: "loremipsumtext",
-    //   text: "Praesent non enim sed velit malesuada consectetur id a justo. Fusce quis eros sit amet enim laoreet dignissim.",
-    // },
-  ];
+  
 
   return (
     <section

@@ -39,7 +39,9 @@ const HeroMain = () => {
         </div>
         <div className="w-full flex items-center justify-center">
           <div className="w-181 h-109.75 bg-[#7E827F24] rounded-[9px] flex items-center justify-center">
-            <div className="w-167.5 h-94.5 bg-[#C3C3C3] text-center">Video</div>
+            <div className="w-167.5 h-94.5 bg-[#C3C3C3] text-center">
+              <video src={"https://www.pexels.com/download/video/7534244/"} controls loop/>
+            </div>
           </div>
         </div>
       </div>
