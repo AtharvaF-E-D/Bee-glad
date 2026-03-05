@@ -32,7 +32,7 @@ export const navigation = [
     type: "dropdown",
     items: [
       { label: "Case Studies", href: "/resources/case-studies" },
-      { label: "Blog & Insights", href: "/resources/blog-insights" },
+      { label: "Blog & Insights", href: "/resources/blog-and-insights" },
       { label: "Portfolio", href: "/resources/portfolio" },
     ],
   },
