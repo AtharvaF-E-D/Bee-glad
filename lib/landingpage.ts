@@ -41,3 +41,13 @@ export const marqueeRow3 = [
   { id: "12", image: "/marquee-icon/DotNet.svg" },
 ];
 
+export const marqueeRow4 = [
+  { id: "9", image: "/company-logo/Boligmatch.svg" },
+  { id: "10", image: "/company-logo/hobbyhub.svg" },
+  { id: "11", image: "/company-logo/instron.svg" },
+  { id: "12", image: "/company-logo/ioweb3.svg" },
+  { id: "13", image: "/company-logo/sugaroff.svg" },
+  
+];
+
+
