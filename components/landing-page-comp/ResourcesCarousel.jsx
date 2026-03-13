@@ -1,42 +1,20 @@
-
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const resources = [
-    {
-        id: 1,
-        title: "WEB VS MOBILE APPS",
-        tags: ["web", "mobile", "strategy"],
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1470&auto=format&fit=crop",
-    },
-    {
-        id: 2,
-        title: "WEB VS MOBILE APPS",
-        tags: ["web", "mobile", "strategy"],
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1470&auto=format&fit=crop",
-    },
-    {
-        id: 3,
-        title: "WEB VS MOBILE APPS",
-        tags: ["web", "mobile", "strategy"],
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1470&auto=format&fit=crop",
-    },
-    {
-        id: 4,
-        title: "WEB VS MOBILE APPS",
-        tags: ["web", "mobile", "strategy"],
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1470&auto=format&fit=crop",
-    },
-];
+import { getResources } from "@/lib/appwrite/resources";
 
 const ResourcesCarousel = () => {
     const carouselRef = useRef(null);
+    const [resources, setResources] = useState([]);
+
+    useEffect(() => {
+        const fetchResources = async () => {
+            const data = await getResources();
+            setResources(data ?? []);
+        };
+        fetchResources();
+    }, []);
 
     const scroll = (direction) => {
         if (carouselRef.current) {
@@ -50,7 +28,6 @@ const ResourcesCarousel = () => {
 
     return (
         <div className="text-white py-16 px-10 relative overflow-hidden">
-            {/* Header */}
             <div className=" mx-auto mb-10">
                 <h2 className="text-5xl font-light mb-2">Resources</h2>
                 <p className="text-[#737373] text-xl">
@@ -58,7 +35,6 @@ const ResourcesCarousel = () => {
                 </p>
             </div>
 
-            {/* Carousel Controls */}
             <div className="absolute top-16 right-10 flex gap-3 z-10">
                 <button
                     onClick={() => scroll("left")}
@@ -74,21 +50,20 @@ const ResourcesCarousel = () => {
                 </button>
             </div>
 
-            {/* Carousel */}
             <div
                 ref={carouselRef}
                 className="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar  mx-auto"
             >
                 {resources.map((item) => (
                     <motion.div
-                        key={item.id}
+                        key={item.$id}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         className="min-w-87.5 bg-[#111]  overflow-hidden shadow-lg"
                     >
-                        <Image
-                            src={item.image}
-                            alt={item.title}
+                        <img
+                            src={item.Image || "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1470&auto=format&fit=crop"}
+                            alt={item.Title}
                             width={350}
                             height={224}
                             className="h-56 w-full object-cover"
@@ -98,17 +73,17 @@ const ResourcesCarousel = () => {
                             <div className="flex items-center gap-2 text-yellow-400 mb-3">
                                 <div className="w-3 h-3 bg-yellow-400 clip-hexagon" />
                                 <span className="text-sm tracking-wide">
-                                    {item.title}
+                                    {item.Title}
                                 </span>
                             </div>
 
                             <div className="flex gap-2 flex-wrap">
-                                {item.tags.map((tag, index) => (
+                                {(item.tags ?? "").split(",").map((tag, index) => (
                                     <span
                                         key={index}
                                         className="bg-[#E8E8E8] text-black text-xs px-3 py-1 rounded-[2px]"
                                     >
-                                        {tag}
+                                        {tag.trim()}
                                     </span>
                                 ))}
                             </div>
@@ -131,7 +106,7 @@ const ResourcesCarousel = () => {
         `}
             </style>
         </div>
-    )
-}
+    );
+};
 
-export default ResourcesCarousel
+export default ResourcesCarousel;

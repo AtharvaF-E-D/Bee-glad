@@ -1,14 +1,12 @@
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { Raleway } from "next/font/google";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 export const metadata = {
   title: "BeeGlad",
   description: "Company Website",
 };
 
-// ✅ Define font OUTSIDE component
 const raleway = Raleway({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -23,13 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`flex flex-col bg-[#121315] ${raleway.variable} font-raleway`}
       >
-        <Navbar />
-
-        <main className="flex-1">{children}</main>
-
-        <Footer />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
