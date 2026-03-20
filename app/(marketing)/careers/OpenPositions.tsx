@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { getJobs } from "@/lib/appwrite/jobs";
@@ -60,12 +61,24 @@ const OpenPositions = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      const data = await getJobs();
-      setJobs(data);
-    };
-    fetchJobs();
-  }, []);
+  const fetchJobs = async () => {
+    const data = await getJobs();
+
+    const formattedJobs: Job[] = data.map((doc: any) => ({
+      $id: doc.$id,
+      title: doc.title,
+      type: doc.type,
+      workMode: doc.workMode,
+      experience: doc.experience,
+      focus: doc.focus,
+      published: doc.published,
+    }));
+
+    setJobs(formattedJobs);
+  };
+
+  fetchJobs();
+}, []);
 
   return (
     <div className="bg-black py-24">
