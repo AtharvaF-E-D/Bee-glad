@@ -12,14 +12,15 @@ export default function LayoutWrapper({
   const pathname = usePathname();
 
   const isAdminRoute = pathname.startsWith("/admin");
+  const isPortfolio = pathname.startsWith("/resources/portfolio")
 
   return (
     <>
-      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && !isPortfolio && <Navbar />}
 
       <main className="flex-1">{children}</main>
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && !isPortfolio && <Footer />}
     </>
   );
 }
