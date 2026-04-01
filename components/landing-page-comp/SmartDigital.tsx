@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import { getSolutions } from "@/lib/appwrite/SmartSolutions";
 import { useState, useEffect } from "react";
 
@@ -29,90 +29,98 @@ const SmartDigital = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-4">
       {/* Heading */}
-      <div className="pt-20">
-        <h1 className="text-[48px] font-light text-center">
-          Smart Digital Solutions That Help <br /> Your Business Grow
+      <div className="pt-12 md:pt-20">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-light text-center leading-snug">
+          Smart Digital Solutions That Help <br className="hidden sm:block" />
+          Your Business Grow
         </h1>
       </div>
 
       {/* Subheading */}
-      <div className="pt-8">
-        <p className="text-center text-[#737373] text-xl font-normal px-4 max-w-7xl mx-auto">
-          From product engineering to scalable cloud solutions, <br />
-          Bee Glad helps you build, optimize, and scale digital experiences with
-          confidence.
+      <div className="pt-4 md:pt-8">
+        <p className="text-center text-[#737373] text-sm sm:text-base md:text-lg max-w-4xl mx-auto">
+          From product engineering to scalable cloud solutions,
+          Bee Glad helps you build, optimize, and scale digital experiences
+          with confidence.
         </p>
       </div>
 
       {/* Tabs Section */}
       {solutions.length > 0 && (
-        <div className="max-w-7xl mx-auto pt-20">
+        <div className="max-w-7xl mx-auto pt-10 md:pt-20">
           <Tabs defaultValue={solutions[0].$id} className="w-full">
 
-            <TabsList className="w-full flex bg-transparent p-0">
+            {/* Tabs List (Scrollable on mobile) */}
+            <TabsList className="w-full flex overflow-x-auto no-scrollbar bg-transparent p-0">
               {solutions.map((tab) => (
                 <TabsTrigger
                   key={tab.$id}
                   value={tab.$id}
                   className="
-                                        flex-1 text-center py-5 pb-10
-                                        text-white/70
-                                        text-xl font-normal
-                                        border-b-3 border-transparent
-                                        transition-all duration-300
-                                        hover:text-white
-                                        data-[state=active]:text-[#FEBC2F]
-                                        data-[state=active]:border-b-[#FEBC2F]
-                                        data-[state=active]:bg-transparent
-                                        data-[state=active]:rounded-none
-                                    "
+                    shrink-0 px-4 py-3 sm:py-4
+                    text-sm sm:text-base md:text-lg
+                    text-white/70 text-center
+                    border-b-2 border-transparent
+                    transition-all duration-300
+                    hover:text-white
+                    data-[state=active]:text-[#FEBC2F]
+                    data-[state=active]:border-b-[#FEBC2F]
+                    data-[state=active]:bg-transparent
+                    data-[state=active]:rounded-none
+                  "
                 >
                   {tab.title}
                 </TabsTrigger>
               ))}
             </TabsList>
 
-            {/* Dynamic Tab Content */}
-            <div className="p-8">
+            {/* Tab Content */}
+            <div className="py-6 md:p-8">
               {solutions.map((tab) => (
-                <TabsContent
-                  key={tab.$id}
-                  value={tab.$id}
-                  className="text-white"
-                >
-                  <div className="grid grid-cols-2 gap-10 items-center">
-                    <div className="space-y-9">
-                      <h1 className="text-2xl font-light">{tab.subtitle}</h1>
-                      <p className="text-[16px] font-normal text-[#737373]">
+                <TabsContent key={tab.$id} value={tab.$id}>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
+                    
+                    {/* LEFT CONTENT */}
+                    <div className="space-y-5 md:space-y-7">
+                      <h1 className="text-lg sm:text-xl md:text-2xl font-light">
+                        {tab.subtitle}
+                      </h1>
+
+                      <p className="text-sm sm:text-base text-[#737373]">
                         {tab.description}
                       </p>
 
-                      <ul className="space-y-3 my-4 text-[#E0C998] text-[16px] font-normal">
+                      {/* FEATURES */}
+                      <ul className="space-y-2 md:space-y-3 text-[#E0C998] text-sm sm:text-base">
                         {(tab.features ?? "").split(",").map((item, index) => (
                           <li
                             key={index}
-                            className="relative pl-7 before:content-[''] before:absolute before:left-0 before:top-2 before:w-4 before:h-4 before:bg-[url('/list-icon.svg')] before:bg-contain before:bg-no-repeat"
+                            className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-3 before:h-3 before:bg-[url('/list-icon.svg')] before:bg-contain before:bg-no-repeat"
                           >
                             {item.trim()}
                           </li>
                         ))}
                       </ul>
-                      <Button className="text-2xl font-light p-0 bg-transparent">
+
+                      <Button className="text-base sm:text-lg font-light p-0 bg-transparent">
                         LEARN MORE →
                       </Button>
                     </div>
+
+                    {/* RIGHT IMAGE */}
                     <div className="flex justify-center">
                       {tab.illustration && (
                         <img
                           src={tab.illustration}
                           alt={tab.title}
-                          width={418}
-                          height={418}
+                          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
                         />
                       )}
                     </div>
+
                   </div>
                 </TabsContent>
               ))}
