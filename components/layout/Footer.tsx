@@ -13,32 +13,33 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[url('/Footer-bg.svg')] bg-cover bg-center text-white py-20">
+    <footer className="bg-[url('/Footer-bg.svg')] bg-cover bg-center text-white py-12 md:py-20 px-4">
       <Container>
-        <div className="grid md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 max-w-7xl mx-auto">
 
           {/* Logo & About */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             <Image
               src="/logo.svg"
-              width={140}
+              width={120}
               height={40}
               alt="logo"
+              className="w-28 sm:w-32 md:w-[140px]"
             />
 
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
               The proper Footer on proper time can preserve you protection.
               We assist you make sure everybody forward.
             </p>
 
             {/* Social Icons */}
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               {[Facebook, Twitter, Instagram, Youtube].map((Icon, index) => (
                 <Icon
                   key={index}
-                  size={40}
+                  size={24}
                   strokeWidth={2}
-                  className="bg-white text-yellow-500 rounded-full p-3 
+                  className="sm:size-10 md:size-10 bg-white text-yellow-500 rounded-full sm:p-2.5 md:p-3 
                   hover:bg-yellow-500 hover:text-white 
                   transition duration-300 cursor-pointer"
                 />
@@ -48,16 +49,18 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-2">Quick Link</h3>
-            <div className="w-8 h-1 bg-yellow-400 mb-6"></div>
+            <h3 className="text-base sm:text-lg font-semibold mb-2">
+              Quick Link
+            </h3>
+            <div className="w-6 sm:w-8 h-1 bg-yellow-400 mb-4 sm:mb-6"></div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3 sm:space-y-4">
               {["Home", "About Us", "Services", "Product"].map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-2 text-gray-300 hover:text-yellow-400 transition cursor-pointer"
+                  className="flex items-center gap-2 text-gray-300 text-sm sm:text-base hover:text-yellow-400 transition cursor-pointer"
                 >
-                  <ChevronRight size={16} className="text-yellow-400" />
+                  <ChevronRight size={14} className="text-yellow-400" />
                   {item}
                 </li>
               ))}
@@ -66,18 +69,20 @@ export default function Footer() {
 
           {/* Blog */}
           <div>
-            <h3 className="text-lg font-semibold mb-2">Blog</h3>
-            <div className="w-8 h-1 bg-yellow-400 mb-6"></div>
+            <h3 className="text-base sm:text-lg font-semibold mb-2">
+              Blog
+            </h3>
+            <div className="w-6 sm:w-8 h-1 bg-yellow-400 mb-4 sm:mb-6"></div>
 
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               {[1, 2].map((_, index) => (
                 <div key={index} className="flex gap-2">
-                  <ChevronRight size={16} className="text-yellow-400 mt-1" />
+                  <ChevronRight size={14} className="text-yellow-400 mt-1" />
                   <div>
-                    <p className="text-gray-300 hover:text-yellow-400 cursor-pointer transition">
+                    <p className="text-gray-300 text-sm sm:text-base hover:text-yellow-400 cursor-pointer transition">
                       People Saying About Footer.
                     </p>
-                    <span className="text-sm text-gray-400">
+                    <span className="text-xs sm:text-sm text-gray-400">
                       8 Nov, 2021
                     </span>
                   </div>
@@ -88,22 +93,24 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-2">Contact</h3>
-            <div className="w-8 h-1 bg-yellow-400 mb-6"></div>
+            <h3 className="text-base sm:text-lg font-semibold mb-2">
+              Contact
+            </h3>
+            <div className="w-6 sm:w-8 h-1 bg-yellow-400 mb-4 sm:mb-6"></div>
 
-            <div className="space-y-5 text-gray-300">
+            <div className="space-y-4 sm:space-y-5 text-gray-300 text-sm sm:text-base">
               <div className="flex gap-3">
-                <MapPin size={18} className="text-yellow-400 mt-1" />
+                <MapPin size={16} className="text-yellow-400 mt-1" />
                 <p>44 Danwers, NY City, USA, 70-102</p>
               </div>
 
               <div className="flex gap-3">
-                <Mail size={18} className="text-yellow-400" />
-                <p>Lamaro@lamaroyc.us</p>
+                <Mail size={16} className="text-yellow-400" />
+                <p className="break-all">Lamaro@lamaroyc.us</p>
               </div>
 
               <div className="flex gap-3">
-                <Phone size={18} className="text-yellow-400" />
+                <Phone size={16} className="text-yellow-400" />
                 <p>91+585-656-658</p>
               </div>
             </div>

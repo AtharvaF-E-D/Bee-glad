@@ -1,4 +1,4 @@
-import ReadyImpact from "@/public/aboutus/ReadyImpact";
+import ReadyImpact from "./ReadyImpact";
 import AboutMain from "./AboutMain";
 import HelpGrow from "./HelpGrow";
 import OurClientAbout from "./OurClientAbout";

@@ -22,12 +22,13 @@ const VideoPlayer = () => {
   return (
     <div className="w-full flex justify-center bg-black ">
       <div className="relative w-[93%] rounded-3xl overflow-hidden group">
-        
+
         {/* Video */}
         <video
           ref={videoRef}
-          className="w-full h-161.5 object-cover rounded-3xl"
-          src="https://www.pexels.com/download/video/35751722/"   // 🔥 Replace with your video
+          className="w-full h-188 object-cover rounded-xl"
+          src="/Bee-Glad.mp4"
+          poster="/video_banner.jpeg"
         />
 
         {/* Dark Overlay */}

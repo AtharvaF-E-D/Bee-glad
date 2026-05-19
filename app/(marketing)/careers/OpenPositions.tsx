@@ -1,49 +1,127 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-const Card = ({ title }: { title: string }) => {
+import { getAllJobs } from "@/lib/services/admin/jobs.Services";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
+type JobType = {
+  _id: string;
+  title: string;
+  jobType?: string;
+  workMode?: string;
+  focus?: string;
+  experience?: string;
+};
+
+type CardProps = {
+  job: JobType;
+};
+
+const Card = ({ job }: CardProps) => {
   return (
     <div className="relative">
-      {/* Yellow Background Layer */}
+
       <div className="absolute inset-0">
         <div className="absolute -left-1 top-0 h-full w-full bg-yellow-400 rounded-2xl"></div>
       </div>
 
-      {/* Main Card */}
-      <div className="relative bg-linear-to-br from-[#1f1f1f] to-[#2a2a2a]
-                      border border-white/20
-                      rounded-2xl
-                      p-8
-                      text-white">
+      <div
+        className="
+                    relative
+                    bg-linear-to-br
+                    from-[#1f1f1f]
+                    to-[#2a2a2a]
+                    border border-white/20
+                    rounded-2xl
+                    p-8
+                    text-white
+                "
+      >
 
-        <h2 className="text-2xl font-light mb-4">{title}</h2>
+        <h2 className="text-2xl font-light mb-4">
+          {job.title}
+        </h2>
 
-        <div className="flex gap-3 mb-6">
-          <span className="text-xs bg-white text-black px-3 py-1 rounded-md">
-            Full-time
-          </span>
-          <span className="text-xs bg-white text-black px-3 py-1 rounded-md">
-            Remote / Hybrid
-          </span>
+        <div className="flex gap-3 mb-6 flex-wrap">
+
+          {job.jobType && (
+            <span className="text-xs bg-white text-black px-3 py-1 rounded-md">
+              {job.jobType}
+            </span>
+          )}
+
+          {job.workMode && (
+            <span className="text-xs bg-white text-black px-3 py-1 rounded-md">
+              {job.workMode}
+            </span>
+          )}
+
         </div>
 
-        <p className="text-white/60 text-sm mb-2">
-          Focus: Performance, UX, modern frameworks
-        </p>
-        <p className="text-white/60 text-sm mb-6">
-          Experience: 2+ years
-        </p>
+        {job.focus && (
+          <p className="text-white/60 text-sm mb-2">
+            Focus: {job.focus}
+          </p>
+        )}
 
-        <button className="text-white font-light hover:underline">
-          Apply Now
-        </button>
+        {job.experience && (
+          <p className="text-white/60 text-sm mb-6">
+            Experience: {job.experience}
+          </p>
+        )}
+
+        <Link href="/joinTeam">
+          <button className="text-white font-light hover:underline cursor-pointer">
+            Apply Now
+          </button>
+        </Link>
+
       </div>
+
     </div>
   );
 };
 
 const OpenPositions = () => {
+
+  const [jobs, setJobs] = useState<JobType[]>([]);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const fetchJobs = async () => {
+
+      try {
+
+        const response = await getAllJobs();
+
+        if (response?.success) {
+
+          setJobs(response?.data || []);
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Jobs fetch error:",
+          error
+        );
+
+      } finally {
+
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+
+  }, []);
+
   return (
     <div className="bg-black py-24">
+
       <h1 className="font-light text-white text-5xl text-center mb-6">
         Open Positions
       </h1>
@@ -52,13 +130,57 @@ const OpenPositions = () => {
         Find your perfect role and join our growing team of Bee Glad
       </p>
 
-      {/* Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
-        <Card title="Frontend Developer" />
-        <Card title="UI/UX Designer" />
-        <Card title="Frontend Developer" />
-        <Card title="UI/UX Designer" />
+
+        {loading ? (
+
+          [1, 2].map((item) => (
+            <div
+              key={item}
+              className="bg-[#1f1f1f] rounded-2xl p-8 animate-pulse"
+            >
+
+              <div className="h-8 bg-[#2a2a2a] rounded w-2/3 mb-6" />
+
+              <div className="flex gap-3 mb-6">
+
+                <div className="h-7 w-24 bg-[#2a2a2a] rounded" />
+
+                <div className="h-7 w-28 bg-[#2a2a2a] rounded" />
+
+              </div>
+
+              <div className="h-4 bg-[#2a2a2a] rounded w-3/4 mb-3" />
+
+              <div className="h-4 bg-[#2a2a2a] rounded w-1/2 mb-6" />
+
+              <div className="h-5 bg-[#2a2a2a] rounded w-24" />
+
+            </div>
+          ))
+
+        ) : jobs.length > 0 ? (
+
+          jobs.map((job) => (
+            <Card
+              key={job._id}
+              job={job}
+            />
+          ))
+
+        ) : (
+
+          <div className="col-span-2 text-center py-20">
+
+            <p className="text-white/40 text-xl">
+              No open positions available
+            </p>
+
+          </div>
+        )}
+
       </div>
+
     </div>
   );
 };
